@@ -1,10 +1,9 @@
+import { GlobalStyle } from './GlobalStyle';
 import { Component } from "react";
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactsList } from './ContactsList/ContactsList';
 import { FilterField } from './FilterField/Filter';
-import { GlobalStyle } from './GlobalStyle';
-
 
 
 
@@ -76,7 +75,7 @@ export class App extends Component {
           contacts={filter === '' ? contacts : filterdContacts}
           onDelete={this.deleteContact}
         />
-        {/* <GlobalStyle/> */}
+        <GlobalStyle/>
       </>
     )
   }
