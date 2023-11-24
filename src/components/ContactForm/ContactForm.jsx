@@ -6,7 +6,7 @@ import {
   Form,
   Field,
   ErrorMessage,
-//   Label,
+  Label,
 } from './ContactForm.styled';
 
 const validationSchema = Yup.object().shape({
@@ -34,14 +34,14 @@ export const ContactForm = ({ onAdd }) => {
             validationSchema={validationSchema}
             >
             <Form>
-                {/* <label htmlFor="name">Name</label> */}
+                <Label>Name</Label>
                 <Field id="name" name="name" placeholder="Tom" />
                 <ErrorMessage name="name" component="span" />
-
-                {/* <label htmlFor="number">Number</label> */}
+                
+                <Label>Number</Label>
                 <Field id="number" name="number" placeholder="000-00-00" />
-                <ErrorMessage name="number" component="span" />
-
+                <ErrorMessage name="number" component="span" />   
+                
                 <button type="submit">Add contact</button>
             </Form>
                 
