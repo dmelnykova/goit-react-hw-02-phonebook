@@ -1,16 +1,16 @@
-// import { Item, Button, IconWrapper } from './ContactList.styled';
+import { Item, ButtonList, } from './ContactsList.styled';
 
 export const ContactsList = ({ contacts, onDelete }) => {
   return (
     <ul>
       {contacts.map(contact => {
         return (
-          <li key={contact.id}>
+          <Item key={contact.id}>
             <p>
               {contact.name}: {contact.number}
             </p>
-            <button onClick={() => onDelete(contact.id)}>Delete</button>
-          </li>
+            <ButtonList onClick={() => onDelete(contact.id)}>Delete</ButtonList>
+          </Item>
         );
       })}
     </ul>

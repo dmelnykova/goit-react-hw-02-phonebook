@@ -2,11 +2,11 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Wrapper,
-  Form,
-  Field,
-  ErrorMessage,
-  Label,
+    Wrapper,
+    Form,
+    Field,
+    ErrorMessage,
+    Button,
 } from './ContactForm.styled';
 
 const validationSchema = Yup.object().shape({
@@ -23,28 +23,41 @@ export const ContactForm = ({ onAdd }) => {
     return (
         <Wrapper>
             <Formik
-            initialValues={{
-                name: '',
-                phone: '',
-            }}
-            onSubmit={(values, actions) => {
-                onAdd(values);
-                actions.resetForm();
-            }}
-            validationSchema={validationSchema}
+                initialValues={{
+                    name: '',
+                    number: '',
+                }}
+                onSubmit={(values, actions) => {
+                    onAdd(values);
+                    actions.resetForm();
+                }}
+                validationSchema={validationSchema}
             >
-            <Form>
-                <Label>Name</Label>
-                <Field id="name" name="name" placeholder="Tom" />
-                <ErrorMessage name="name" component="span" />
+                {({ values, handleChange }) => (
+                    <Form>
+                        <label>Name</label>
+                        <Field
+                            id="name"
+                            name="name"
+                            placeholder="Tom"
+                            value={values.name}
+                            onChange={handleChange}
+                        />
+                        <ErrorMessage name="name" component="span" />
                 
-                <Label>Number</Label>
-                <Field id="number" name="number" placeholder="000-00-00" />
-                <ErrorMessage name="number" component="span" />   
+                        <label>Number</label>
+                        <Field
+                            id="number"
+                            name="number"
+                            placeholder="000-00-00"
+                            value={values.number}
+                            onChange={handleChange}
+                        />
+                        <ErrorMessage name="number" component="span" />
                 
-                <button type="submit">Add contact</button>
-            </Form>
-                
+                        <Button type="submit">Add contact</Button>
+                    </Form>
+                )}
 
             </Formik>
         </Wrapper>
