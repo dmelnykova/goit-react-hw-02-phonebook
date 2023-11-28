@@ -45,6 +45,14 @@ export class App extends Component {
     });
   };
 
+  getFilterdContacts = () => {
+    return this.state.contacts.filter(contact => {
+      return contact.name
+        .toLowerCase()
+        .includes(this.state.filter.toLowerCase());
+    });
+  };
+
 
   // - Delete -
   
@@ -61,9 +69,7 @@ export class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
-    const filterdContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
+    const filterdContacts = this.getFilterdContacts();
 
     return (
       <>
@@ -71,10 +77,13 @@ export class App extends Component {
         <ContactForm onAdd={this.addContact} />
         <h2>Contacts</h2>
         <FilterField filter={filter} onChange={this.onFilter} />
-        <ContactsList
-          contacts={filter === '' ? contacts : filterdContacts}
-          onDelete={this.deleteContact}
-        />
+        {contacts.length > 0 && (
+          <ContactsList
+            contacts={filterdContacts}
+            onDelete={this.deleteContact}
+          />
+        )}
+        
         <GlobalStyle/>
       </>
     )
